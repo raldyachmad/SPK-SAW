@@ -1,11 +1,11 @@
 <!-- Sidebar -->
 <aside {{ $isActive = request() }}
-    class="fixed top-0 left-0 z-40 w-64 h-screen pt-14 transition-transform -translate-x-full bg-white border-r border-gray-200 md:translate-x-0 dark:bg-zinc-800 dark:border-gray-700"
+    class="fixed top-0 left-0 z-40 w-64 h-screen pt-14 transition-transform -translate-x-full bg-white border-r border-zinc-200 md:translate-x-0 dark:bg-zinc-800 dark:border-zinc-700"
     aria-label="Sidenav" id="drawer-navigation">
     <div class="overflow-y-auto py-5 px-3 h-full bg-white dark:bg-zinc-800">
         <div class="relative">
             <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
-                <svg class="w-5 h-5 text-gray-500 dark:text-gray-400" fill="currentColor" viewBox="0 0 20 20"
+                <svg class="w-5 h-5 text-zinc-500 dark:text-zinc-400" fill="currentColor" viewBox="0 0 20 20"
                     xmlns="http://www.w3.org/2000/svg">
                     <path fill-rule="evenodd" clip-rule="evenodd"
                         d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z">
@@ -13,17 +13,17 @@
                 </svg>
             </div>
             <input type="text" name="search" id="sidebar-search"
-                class="bg-zinc-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full pl-10 p-2 dark:bg-zinc-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                class="bg-zinc-50 border border-zinc-300 text-zinc-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full pl-10 p-2 dark:bg-zinc-700 dark:border-zinc-600 dark:placeholder-zinc-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
                 placeholder="Cari Menu" autocomplete="off" />
         </div>
-        <p class="text-gray-900 dark:text-white text-sm mt-4 px-1 mb-2">Menu</p>
+        <p class="text-zinc-900 dark:text-white text-sm mt-4 px-1 mb-2">Menu</p>
         <ul class="space-y-2" id="sidebar-menu">
             <li>
 
                 <a href="{{ route('dashboard') }}"
-                    class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white {{ $isActive->is('dashboard') ? 'bg-zinc-100 dark:bg-zinc-700' : 'hover:bg-zinc-100 dark:hover:bg-zinc-700' }} group">
+                    class="flex items-center p-2 text-zinc-900 rounded-lg dark:text-white {{ $isActive->is('dashboard') ? 'bg-zinc-100 dark:bg-zinc-700' : 'hover:bg-zinc-100 dark:hover:bg-zinc-700' }} group">
                     <svg aria-hidden="true"
-                        class="w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 {{ $isActive->is('dashboard') ? 'text-gray-900 dark:text-white' : 'group-hover:text-gray-900 dark:group-hover:text-white' }}"
+                        class="w-6 h-6 text-zinc-500 transition duration-75 dark:text-zinc-400 {{ $isActive->is('dashboard') ? 'text-zinc-900 dark:text-white' : 'group-hover:text-zinc-900 dark:group-hover:text-white' }}"
                         xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                             d="M11.293 3.293a1 1 0 0 1 1.414 0l6 6 2 2a1 1 0 0 1-1.414 1.414L19 12.414V19a2 2 0 0 1-2 2h-3a1 1 0 0 1-1-1v-3h-2v3a1 1 0 0 1-1 1H7a2 2 0 0 1-2-2v-6.586l-.293.293a1 1 0 0 1-1.414-1.414l2-2 6-6Z" />
@@ -34,11 +34,11 @@
             </li>
             <li x-data="{ santri: {{ request()->is('santri') || request()->is('santri/create') ? 'true' : 'false' }} }">
                 <button type="button" @click="santri = !santri"
-                    class="flex items-center p-2 w-full text-gray-900 rounded-lg transition duration-75 group hover:bg-zinc-100 dark:text-white dark:hover:bg-zinc-700"
+                    class="flex items-center p-2 w-full text-zinc-900 rounded-lg transition duration-75 group hover:bg-zinc-100 dark:text-white dark:hover:bg-zinc-700"
                     aria-controls="dropdown-santri" data-collapse-toggle="dropdown-santri">
 
                     <!-- Icon Santri -->
-                    <svg class="flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 group-hover:text-gray-900 dark:text-gray-400 dark:group-hover:text-white"
+                    <svg class="flex-shrink-0 w-6 h-6 text-zinc-500 transition duration-75 group-hover:text-zinc-900 dark:text-zinc-400 dark:group-hover:text-white"
                         aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                         fill="none" viewBox="0 0 24 24">
                         <path stroke="currentColor" stroke-linecap="round" stroke-width="2"
@@ -57,25 +57,29 @@
                     </svg>
                 </button>
                 <ul id="dropdown-santri"
-                    class="{{ $isActive->is('santri') || $isActive->is('santri/create') ? '' : 'hidden' }} py-2 space-y-2">
+                    class="{{ $isActive->is('santri') || $isActive->is('santri/create') ? '' : 'hidden' }} py-2 space-y-2"
+                    x-show="santri" x-transition:enter="transition ease-out duration-300"
+                    x-transition:enter-start="opacity-0 max-h-0" x-transition:enter-end="opacity-100 max-h-40"
+                    x-transition:leave="transition ease-in duration-200" x-transition:leave-start="opacity-100 max-h-40"
+                    x-transition:leave-end="opacity-0 max-h-0">
                     <li>
                         <a href="{{ route('santri.index') }}"
-                            class="flex items-center p-2 pl-11 w-full  text-gray-900 rounded-lg transition duration-75 group dark:text-white {{ $isActive->is('santri') ? 'bg-zinc-100 dark:bg-zinc-700' : 'hover:bg-zinc-100 dark:hover:bg-zinc-700' }}">Daftar
+                            class="flex items-center p-2 pl-11 w-full  text-zinc-900 rounded-lg transition duration-75 group dark:text-white {{ $isActive->is('santri') ? 'bg-zinc-100 dark:bg-zinc-700' : 'hover:bg-zinc-100 dark:hover:bg-zinc-700' }}">Daftar
                             Santri</a>
                     </li>
                     <li>
                         <a href="{{ route('santri.create') }}"
-                            class="flex items-center p-2 pl-11 w-full  text-gray-900 rounded-lg transition duration-75 group dark:text-white {{ $isActive->is('santri/create') ? 'bg-zinc-100 dark:bg-zinc-700' : 'hover:bg-zinc-100 dark:hover:bg-zinc-700' }}">Tambah
+                            class="flex items-center p-2 pl-11 w-full  text-zinc-900 rounded-lg transition duration-75 group dark:text-white {{ $isActive->is('santri/create') ? 'bg-zinc-100 dark:bg-zinc-700' : 'hover:bg-zinc-100 dark:hover:bg-zinc-700' }}">Tambah
                             Santri</a>
                     </li>
                 </ul>
             </li>
             <li x-data="{ kriteria: {{ request()->is('criteria') || request()->is('criteria/create') ? 'true' : 'false' }} }">
                 <button type="button" @click="kriteria = !kriteria"
-                    class="flex items-center p-2 w-full  text-gray-900 rounded-lg transition duration-75 group hover:bg-zinc-100 dark:text-white dark:hover:bg-zinc-700"
+                    class="flex items-center p-2 w-full  text-zinc-900 rounded-lg transition duration-75 group hover:bg-zinc-100 dark:text-white dark:hover:bg-zinc-700"
                     aria-controls="dropdown-kriteria" data-collapse-toggle="dropdown-kriteria">
 
-                    <svg class="flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 group-hover:text-gray-900 dark:text-gray-400 dark:group-hover:text-white"
+                    <svg class="flex-shrink-0 w-6 h-6 text-zinc-500 transition duration-75 group-hover:text-zinc-900 dark:text-zinc-400 dark:group-hover:text-white"
                         aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                         fill="none" viewBox="0 0 24 24">
                         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -91,24 +95,28 @@
                     </svg>
                 </button>
                 <ul id="dropdown-kriteria"
-                    class="{{ $isActive->is('criteria') || $isActive->is('criteria/create') ? '' : 'hidden' }}  py-2 space-y-2">
+                    class="{{ $isActive->is('criteria') || $isActive->is('criteria/create') ? '' : 'hidden' }}  py-2 space-y-2"
+                    x-show="kriteria" x-transition:enter="transition ease-out duration-300"
+                    x-transition:enter-start="opacity-0 max-h-0" x-transition:enter-end="opacity-100 max-h-40"
+                    x-transition:leave="transition ease-in duration-200" x-transition:leave-start="opacity-100 max-h-40"
+                    x-transition:leave-end="opacity-0 max-h-0">
                     <li>
                         <a href="{{ route('criteria.index') }}"
-                            class="flex items-center p-2 pl-11 w-full  text-gray-900 rounded-lg transition duration-75 group dark:text-white {{ $isActive->is('criteria') ? 'bg-zinc-100 dark:bg-zinc-700' : 'hover:bg-zinc-100 dark:hover:bg-zinc-700' }}">Daftar
+                            class="flex items-center p-2 pl-11 w-full  text-zinc-900 rounded-lg transition duration-75 group dark:text-white {{ $isActive->is('criteria') ? 'bg-zinc-100 dark:bg-zinc-700' : 'hover:bg-zinc-100 dark:hover:bg-zinc-700' }}">Daftar
                             Kriteria</a>
                     </li>
                     <li>
                         <a href="{{ route('criteria.create') }}"
-                            class="flex items-center p-2 pl-11 w-full  text-gray-900 rounded-lg transition duration-75 group dark:text-white {{ $isActive->is('criteria/create') ? 'bg-zinc-100 dark:bg-zinc-700' : 'hover:bg-zinc-100 dark:hover:bg-zinc-700' }}">Tambah
+                            class="flex items-center p-2 pl-11 w-full  text-zinc-900 rounded-lg transition duration-75 group dark:text-white {{ $isActive->is('criteria/create') ? 'bg-zinc-100 dark:bg-zinc-700' : 'hover:bg-zinc-100 dark:hover:bg-zinc-700' }}">Tambah
                             Kriteria</a>
                     </li>
                 </ul>
             </li>
             <li x-data="{ penilaian: {{ request()->is('penilaian') || request()->is('penilaian/create') ? 'true' : 'false' }} }">
                 <button type="button" @click="penilaian = !penilaian"
-                    class="flex items-center p-2 w-full  text-gray-900 rounded-lg transition duration-75 group hover:bg-zinc-100 dark:text-white dark:hover:bg-zinc-700"
+                    class="flex items-center p-2 w-full  text-zinc-900 rounded-lg transition duration-75 group hover:bg-zinc-100 dark:text-white dark:hover:bg-zinc-700"
                     aria-controls="dropdown-penilaian" data-collapse-toggle="dropdown-penilaian">
-                    <svg class="flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 group-hover:text-gray-900 dark:text-gray-400 dark:group-hover:text-white"
+                    <svg class="flex-shrink-0 w-6 h-6 text-zinc-500 transition duration-75 group-hover:text-zinc-900 dark:text-zinc-400 dark:group-hover:text-white"
                         aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                         fill="none" viewBox="0 0 24 24">
                         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -124,15 +132,19 @@
                     </svg>
                 </button>
                 <ul id="dropdown-penilaian"
-                    class="{{ $isActive->is('penilaian') || $isActive->is('penilaian/create') ? '' : 'hidden' }}  py-2 space-y-2">
+                    class="{{ $isActive->is('penilaian') || $isActive->is('penilaian/create') ? '' : 'hidden' }}  py-2 space-y-2"
+                    x-show="penilaian" x-transition:enter="transition ease-out duration-300"
+                    x-transition:enter-start="opacity-0 max-h-0" x-transition:enter-end="opacity-100 max-h-40"
+                    x-transition:leave="transition ease-in duration-200" x-transition:leave-start="opacity-100 max-h-40"
+                    x-transition:leave-end="opacity-0 max-h-0">
                     <li>
                         <a href="{{ route('penilaian.create') }}"
-                            class="flex items-center p-2 pl-11 w-full  text-gray-900 rounded-lg transition duration-75 group dark:text-white {{ $isActive->is('penilaian/create') ? 'bg-zinc-100 dark:bg-zinc-700' : 'hover:bg-zinc-100 dark:hover:bg-zinc-700' }}">Tambah
+                            class="flex items-center p-2 pl-11 w-full  text-zinc-900 rounded-lg transition duration-75 group dark:text-white {{ $isActive->is('penilaian/create') ? 'bg-zinc-100 dark:bg-zinc-700' : 'hover:bg-zinc-100 dark:hover:bg-zinc-700' }}">Tambah
                             Penilaian</a>
                     </li>
                     <li>
                         <a href="{{ route('penilaian.index') }}"
-                            class="flex items-center p-2 pl-11 w-full  text-gray-900 rounded-lg transition duration-75 group dark:text-white {{ $isActive->is('penilaian') ? 'bg-zinc-100 dark:bg-zinc-700' : 'hover:bg-zinc-100 dark:hover:bg-zinc-700' }}">Hasil
+                            class="flex items-center p-2 pl-11 w-full  text-zinc-900 rounded-lg transition duration-75 group dark:text-white {{ $isActive->is('penilaian') ? 'bg-zinc-100 dark:bg-zinc-700' : 'hover:bg-zinc-100 dark:hover:bg-zinc-700' }}">Hasil
                             Penilaian</a>
                     </li>
                 </ul>

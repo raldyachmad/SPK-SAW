@@ -29,8 +29,8 @@
     </nav>
 
 
+    <h1 class="text-2xl font-semibold mb-4">{{ $title }}</h1>
     <section class="bg-white dark:bg-zinc-800 p-4 rounded-md border border-zinc-200 dark:border-zinc-700">
-        <h1 class="text-xl font-semibold mb-4">{{ $title }}</h1>
         <form action="{{ route('criteria.store') }}" method="POST">
             @csrf
             <div class="grid md:grid-cols-2 md:gap-4">

@@ -5,3 +5,7 @@
 @source "../views";
 @custom-variant dark (&:where(.dark, .dark *));
 @source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
+
+.dark .datatable-input, .dark .datatable-selector, .dark .datatable-table thead{
+    background-color: #3f3f469a;
+}

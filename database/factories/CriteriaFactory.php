@@ -19,7 +19,7 @@ class CriteriaFactory extends Factory
         return [
             'nama' => fake()->unique()->word(),
             'bobot' => fake()->randomFloat(2, 0, 1), // 2 desimal, antara 0.00 s.d. 1.00
-            'atribut' => fake()->randomElement(['benefit', 'cost']),
+            'atribut' => fake()->randomElement(['Benefit', 'Cost']),
         ];
     }
 }

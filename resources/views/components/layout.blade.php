@@ -8,14 +8,15 @@
     <link rel="shortcut icon" href="{{ asset('logo.svg') }}" type="image/x-icon">
     @vite('resources/css/app.css')
     <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
-    <title>{{ $title }}</title>
+    <title>{{ $title }} | {{ config('app.name') }}</title>
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.datatables.net/2.3.2/css/dataTables.tailwindcss.css">
+
     <script>
         function themeSwitcher() {
             return {
                 isDark: false,
                 initTheme() {
-                    // ambil dari localStorage
                     this.isDark = localStorage.getItem('theme') === 'dark';
                 },
                 toggleTheme() {
@@ -102,7 +103,7 @@
                                     <a href="{{ route('logout') }}"
                                         onclick="event.preventDefault();
                                                 this.closest('form').submit();"
-                                    class="block
+                                        class="block
                                         py-2 px-4 text-sm hover:bg-zinc-100 dark:hover:bg-zinc-600
                                         dark:hover:text-white">
                                         Log Out</a>
@@ -139,6 +140,7 @@
             });
         });
     </script>
+    @stack('scripts')
     <script src="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.js"></script>
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.14.8/dist/cdn.min.js"></script>
 </body>

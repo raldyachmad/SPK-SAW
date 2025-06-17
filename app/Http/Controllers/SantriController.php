@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreSantriRequest;
+use App\Http\Requests\UpdateSantriRequest;
+use App\Models\Criteria;
 use App\Models\Santri;
 use Illuminate\Http\Request;
 
@@ -13,7 +15,8 @@ class SantriController extends Controller
      */
     public function index()
     {
-        $santris = Santri::latest('id')->paginate(5);
+        $santris = Santri::latest()->get();
+        // $criterias = Criteria::latest()->get();
         return view('santri.index', ['title' => 'Daftar Santri', 'santris' => $santris]);
     }
 
@@ -31,7 +34,7 @@ class SantriController extends Controller
     public function store(StoreSantriRequest $request)
     {
         Santri::create($request->validated());
-        return redirect()->route('santri.index')->with('success','Tambah Santri Berhasil!');
+        return redirect()->route('santri.index')->with('success', 'Tambah Santri Berhasil!');
     }
 
     /**
@@ -47,15 +50,20 @@ class SantriController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $santri = Santri::findOrFail($id);
+        return view('santri.edit', ['title' => 'Edit Santri', 'santri' => $santri]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(UpdateSantriRequest $request, string $id)
     {
-        //
+        $santri = Santri::findOrFail($id);
+
+        $santri->update($request->validated());
+
+        return redirect()->route('santri.index')->with('success', 'Data Berhasil Diperbarui!');
     }
 
     /**
@@ -63,6 +71,9 @@ class SantriController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $santri = Santri::findOrFail($id);
+        $santri->delete();
+
+        return redirect()->route('santri.index')->with('success', 'Data berhasil dihapus.');
     }
 }

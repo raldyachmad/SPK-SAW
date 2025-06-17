@@ -4,6 +4,8 @@ use App\Http\Controllers\CriteriaController;
 use App\Http\Controllers\PenilaianController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SantriController;
+use App\Models\Criteria;
+use App\Models\Santri;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -11,7 +13,13 @@ Route::get('/', function () {
 });
 
 Route::get('/dashboard', function () {
-    return view('index', ['title'=>'Dashboard']);
+    return view('index', [
+        'title' => 'Dashboard',
+        'totalSantri' => Santri::count(),
+        'totalCriteria' => Criteria::count(),
+        'santris' => Santri::latest()->get(),
+        'criterias' => Criteria::latest()->get(),
+    ]);
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 
@@ -24,4 +32,4 @@ Route::middleware('auth')->group(function () {
     Route::resource('criteria', CriteriaController::class);
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';

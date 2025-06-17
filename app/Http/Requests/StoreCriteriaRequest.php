@@ -24,7 +24,7 @@ class StoreCriteriaRequest extends FormRequest
         return [
             'nama' => 'required|string|max:255',
             'bobot' => 'required|numeric|between:0,1',
-            'atribut' => 'required|in:Benefit,Cost',
+            'atribut' => 'required|in:benefit,cost',
         ];
     }
 }
