@@ -1,30 +1,54 @@
 <x-layout>
     <x-slot:title>{{ $title }}</x-slot:title>
     <x-breadcumb :title="$title"></x-breadcumb>
-    <div class="flex items-center justify-between mb-4">
+    <div class="flex  justify-between  mb-5">
         <h1 class="text-2xl font-semibold">{{ $title }}</h1>
-        <a href="{{ route('criteria.create') }}"
-            class="flex items-center justify-center text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
-            <svg class="h-3.5 w-3.5 mr-2" fill="currentColor" viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"
-                aria-hidden="true">
-                <path clip-rule="evenodd" fill-rule="evenodd"
-                    d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z" />
-            </svg>
-            Tambah Kriteria
-        </a>
+        <div class="w-fit">
+            <a href="{{ route('criteria.create') }}"
+                class="flex items-center justify-center text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
+                <svg class="h-3.5 w-3.5 mr-2" fill="currentColor" viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"
+                    aria-hidden="true">
+                    <path clip-rule="evenodd" fill-rule="evenodd"
+                        d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z" />
+                </svg>
+                Tambah Kriteria
+            </a>
+        </div>
     </div>
-    <section class="bg-white dark:bg-zinc-800 p-4 rounded-md border border-zinc-200 dark:border-zinc-700">
-        @if (isset($success))
-            $success
-        @endif
-        <div class="bg-white dark:bg-zinc-800 relative sm:rounded-lg">
-            <div>
-                <table class="w-full text-sm text-left text-zinc-500 dark:text-zinc-400" id="pagination-table">
-                    <thead class="text-xs text-zinc-700 uppercase bg-zinc-50 dark:bg-zinc-700 dark:text-zinc-400">
+    @if (session('success'))
+        <div id="alert-3"
+            class="flex items-center p-4 mb-4 text-green-800 rounded-lg bg-green-50 dark:bg-gray-800 dark:text-green-400 fixed top-20 right-7 max-w-full"
+            role="alert">
+            <svg class="shrink-0 w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor"
+                viewBox="0 0 20 20">
+                <path
+                    d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z" />
+            </svg>
+            <span class="sr-only">Sukses</span>
+            <div class="ms-3 me-8 text-sm font-medium">
+                {{ session('success') }}
+            </div>
+            <button type="button"
+                class="ms-auto -mx-1.5 -my-1.5 bg-green-50 text-green-500 rounded-lg focus:ring-2 focus:ring-green-400 p-1.5 hover:bg-green-200 inline-flex items-center justify-center h-8 w-8 dark:bg-gray-800 dark:text-green-400 dark:hover:bg-gray-700"
+                data-dismiss-target="#alert-3" aria-label="Close">
+                <span class="sr-only">Close</span>
+                <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                    viewBox="0 0 14 14">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+                </svg>
+            </button>
+        </div>
+    @endif
+    <section class="bg-white dark:bg-zinc-800 p-4 rounded-md border border-zinc-200 dark:border-zinc-800">
+        <div class="sm:rounded-lg">
+            <div class="max-w-screen overflow-hidden">
+                <table class="max-w-full text-sm text-left text-zinc-500 dark:text-zinc-400" id="pagination-table">
+                    <thead class="text-xs text-zinc-700 uppercase bg-zinc-50 dark:bg-zinc-900 dark:text-zinc-400">
                         <tr>
                             <th scope="col" class="px-4 py-3">
-                                <span class="flex items-center">
-                                    No <svg class="w-4 h-4 ms-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                                <span class="flex items-center">No
+                                    <svg class="w-4 h-4 ms-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
                                         width="24" height="24" fill="none" viewBox="0 0 24 24">
                                         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
                                             stroke-width="2" d="m8 15 4 4 4-4m0-6-4-4-4 4" />
@@ -32,43 +56,30 @@
                                 </span>
                             </th>
                             <th scope="col" class="px-4 py-3">
-                                <span class="flex items-center">
-                                    Nama Kriteria <svg class="w-4 h-4 ms-1"
-                                    aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                    fill="none" viewBox="0 0 24 24">
-                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                        stroke-width="2" d="m8 15 4 4 4-4m0-6-4-4-4 4" />
-                                </svg>
+                                <span class="flex items-center">Nama Kriteria
+                                    <svg class="w-4 h-4 ms-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                                        width="24" height="24" fill="none" viewBox="0 0 24 24">
+                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                            stroke-width="2" d="m8 15 4 4 4-4m0-6-4-4-4 4" />
+                                    </svg>
                                 </span>
                             </th>
                             <th scope="col" class="px-4 py-3">
-                                <span class="flex items-center">
-                                    Bobot <svg class="w-4 h-4 ms-1"
-                                    aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                    fill="none" viewBox="0 0 24 24">
-                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                        stroke-width="2" d="m8 15 4 4 4-4m0-6-4-4-4 4" />
-                                </svg>
+                                <span class="flex items-center">Bobot
+                                    <svg class="w-4 h-4 ms-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                                        width="24" height="24" fill="none" viewBox="0 0 24 24">
+                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                            stroke-width="2" d="m8 15 4 4 4-4m0-6-4-4-4 4" />
+                                    </svg>
                                 </span>
                             </th>
                             <th scope="col" class="px-4 py-3">
-                                <span class="flex items-center">
-                                    Atribut <svg class="w-4 h-4 ms-1"
-                                    aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                    fill="none" viewBox="0 0 24 24">
-                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                        stroke-width="2" d="m8 15 4 4 4-4m0-6-4-4-4 4" />
-                                </svg>
-                                </span>
-                            </th>
-                            <th scope="col" class="px-4 py-3">
-                                <span class="flex items-center">
-                                    Tanggal Diperbarui <svg class="w-4 h-4 ms-1"
-                                    aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                    fill="none" viewBox="0 0 24 24">
-                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                        stroke-width="2" d="m8 15 4 4 4-4m0-6-4-4-4 4" />
-                                </svg>
+                                <span class="flex items-center">Atribut
+                                    <svg class="w-4 h-4 ms-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                                        width="24" height="24" fill="none" viewBox="0 0 24 24">
+                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                            stroke-width="2" d="m8 15 4 4 4-4m0-6-4-4-4 4" />
+                                    </svg>
                                 </span>
                             </th>
                             <th scope="col" class="px-4 py-3">
@@ -81,29 +92,28 @@
                             $no = 1;
                         @endphp
                         @forelse ($criterias as $criteria)
-                            <tr class="border-b border-zinc-200 dark:border-zinc-700" x-data="{ showHapus: false }">
+                            <tr class="border-b border-zinc-200 dark:border-zinc-700"  x-data="{ showHapus: false }">
                                 <th scope="row"
                                     class="px-4 py-3 font-medium text-zinc-900 whitespace-nowrap dark:text-white">
                                     {{ $no }}</th>
                                 <td class="px-4 py-3">{{ $criteria->nama }}</td>
                                 <td class="px-4 py-3">{{ $criteria->bobot }}</td>
-                                <td class="px-4 py-3">{{ $criteria->atribut }}</td>
-                                <td class="px-4 py-3">{{ $criteria->updated_at->diffForHumans() }}</td>
+                                <td class="px-4 py-3 capitalize">{{ $criteria->atribut }}</td>
                                 <td class="px-4 py-3 flex items-center justify-end">
-                                    <button id="criteria-{{ $criteria->id }}-button"
-                                        data-dropdown-toggle="criteria-{{ $criteria->id }}"
+                                    <button id="criteria-{{ $no }}-button"
+                                        data-dropdown-toggle="criteria-{{ $no }}"
                                         class="inline-flex items-center p-0.5 text-sm font-medium text-center text-zinc-500 hover:text-zinc-800 rounded-lg focus:outline-none dark:text-zinc-400 dark:hover:text-zinc-100"
                                         type="button">
-                                        <svg class="w-5 h-5" aria-hidden="true" fill="currentColor" viewbox="0 0 20 20"
-                                            xmlns="http://www.w3.org/2000/svg">
+                                        <svg class="w-5 h-5" aria-hidden="true" fill="currentColor"
+                                            viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                                             <path
                                                 d="M6 10a2 2 0 11-4 0 2 2 0 014 0zM12 10a2 2 0 11-4 0 2 2 0 014 0zM16 12a2 2 0 100-4 2 2 0 000 4z" />
                                         </svg>
                                     </button>
-                                    <div id="criteria-{{ $criteria->id }}"
-                                        class="hidden z-10 w-44 bg-white rounded divide-y divide-zinc-100 shadow dark:bg-zinc-700 dark:divide-zinc-600 wasu">
+                                    <div id="criteria-{{ $no }}"
+                                        class="hidden z-10 w-44 bg-white rounded divide-y divide-zinc-100 shadow dark:bg-zinc-700 dark:divide-zinc-600">
                                         <ul class="py-1 text-sm text-zinc-700 dark:text-zinc-200"
-                                            aria-labelledby="criteria-{{ $criteria->id }}-button">
+                                            aria-labelledby="criteria-{{ $no }}-button">
                                             <li>
                                                 <a href="{{ route('criteria.edit', $criteria->id) }}"
                                                     class="block py-2 px-4 hover:bg-zinc-100 dark:hover:bg-zinc-600 dark:hover:text-white">Edit</a>
@@ -114,10 +124,11 @@
                                             </li>
                                         </ul>
                                     </div>
+
                                     <section tabindex="-1"
                                         class="items-center justify-center overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 w-full md:inset-0 h-dvh md:h-full hidden"
                                         :class="{ 'hidden': !showHapus, 'flex bg-black/60 ': showHapus }">
-                                        <div class="relative p-4 w-full max-w-bobotlg h-auto md:h-auto">
+                                        <div class="relative p-4 w-full max-w-lg h-auto md:h-auto">
                                             <div class="relative p-4 bg-white rounded-lg dark:bg-zinc-800 md:p-8">
                                                 <div class="mb-4 text-sm font-light text-zinc-500 dark:text-zinc-400">
                                                     <h3 class="mb-3 text-2xl font-bold text-zinc-900 dark:text-white">
@@ -154,7 +165,7 @@
                             @endphp
                         @empty
                             <tr class=" border-zinc-200 dark:border-zinc-700">
-                                <td colspan="3" class="px-4 py-3 text-center">Data Kosong!</td>
+                                <td colspan="4" class="px-4 py-3 text-center">Data Kosong!</td>
                             </tr>
                         @endforelse
                     </tbody>
@@ -170,7 +181,6 @@
                     paging: true,
                     perPage: 5,
                     perPageSelect: [5, 10, 15, 20, 25],
-                    sortable: true
                 });
             }
         </script>

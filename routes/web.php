@@ -1,12 +1,11 @@
 <?php
 
 use App\Http\Controllers\CriteriaController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PenilaianController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SantriController;
-use App\Models\Criteria;
-use App\Models\Penilaian;
-use App\Models\Santri;
+use App\Http\Controllers\SuperDashboardController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -14,50 +13,11 @@ Route::get('/', function () {
     return redirect()->route('login');
 });
 
-Route::get('/dashboard', function () {
-    $santris = Santri::with('penilaians.criteria')->get();
-    $criterias = Criteria::all();
+Route::get('/dashboard', [DashboardController::class, 'index'])->middleware(['auth', 'role:admin'])->name('dashboard');
 
-    $hasil = [];
+Route::get('/superadmin/dashboard', [SuperDashboardController::class, 'index'])->middleware(['auth', 'role:superadmin'])->name('superadmin.dashboard');
 
-    foreach ($santris as $santri) {
-        $total = 0;
 
-        foreach ($santri->penilaians as $penilaian) {
-            $nilai = $penilaian->nilai;
-            $bobot = $penilaian->criteria->bobot;
-            $atribut = $penilaian->criteria->atribut;
-
-            $normalisasi = $atribut === 'Benefit' ? $nilai : 1 - $nilai;
-            $total += $normalisasi * $bobot;
-        }
-
-        $hasil[] = [
-            'id' => $santri->id,
-            'nama' => $santri->nama,
-            'nilai_akhir' => round($total, 4),
-        ];
-    }
-
-    usort($hasil, fn($a, $b) => $b['nilai_akhir'] <=> $a['nilai_akhir']);
-    $criteriaCount = Criteria::count();
-    $totalPenilaian = Penilaian::select('santri_id')
-        ->groupBy('santri_id')
-        ->havingRaw('COUNT(*) = ?', [$criteriaCount])
-        ->get()
-        ->count();
-    return view('index', [
-        'title' => 'Dashboard',
-        'santris' => Santri::latest()->get(),
-        'totalSantri' => $santris->count(),
-        'totalCriteria' => $criterias->count(),
-        'totalPenilaian' => $totalPenilaian,
-        'ranking' => collect($hasil),
-        'lulusanTerbaik' => $hasil[0] ?? null,
-        'criterias' => $criterias,
-
-    ]);
-})->middleware(['auth', 'verified'])->name('dashboard');
 
 
 Route::middleware('auth')->group(function () {
