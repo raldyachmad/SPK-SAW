@@ -46,8 +46,8 @@
                 id="user-menu-button" aria-expanded="false" data-dropdown-toggle="dropdown">
                 <span class="sr-only">Open user menu</span>
                 <img class="w-8 h-8 rounded-full"
-                    src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/michael-gough.png"
-                    alt="user photo" />
+                    src="{{ Avatar::create(Auth::user()->name)->toBase64() }}"
+                    alt="{{ Auth::user()->name }}" />
             </button>
             <!-- Dropdown menu -->
             <div class="hidden z-50 my-4 w-56 text-base list-none bg-white divide-y divide-gray-100 shadow dark:bg-zinc-700 dark:divide-gray-600 rounded-md overflow-hidden"

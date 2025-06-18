@@ -12,7 +12,7 @@ class Criteria extends Model
 
     protected $fillable = ['nama', 'bobot', 'atribut'];
     public function penilaians()
-{
-    return $this->hasMany(Penilaian::class, 'criteria_id');
-}
+    {
+        return $this->hasMany(Penilaian::class, 'criteria_id');
+    }
 }
