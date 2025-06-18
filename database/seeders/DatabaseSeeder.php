@@ -17,6 +17,6 @@ class DatabaseSeeder extends Seeder
     {
         User::factory()->create();
         Santri::factory(100)->create();
-        Criteria::factory(100)->create();
+        Criteria::factory(5)->create();
     }
 }

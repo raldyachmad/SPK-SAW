@@ -9,3 +9,14 @@
 .dark .datatable-input, .dark .datatable-selector, .dark .datatable-table thead{
     background-color: #3f3f469a;
 }
+
+ .datatable-pagination {
+    max-width:100% !important;
+    overflow-x: auto;
+}
+
+div[drawer-backdrop]{
+    background-color: rgba(0, 0, 0, 0.219);
+}
+
+[x-cloak] { display: none !important; }

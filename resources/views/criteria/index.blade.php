@@ -19,10 +19,9 @@
             Kriteria
         </a>
     </nav>
-    <div class="flex flex-col md:flex-row items-center justify-between  mb-5">
-        <div
-            class="w-full  flex flex-col md:flex-row space-y-2 md:space-y-0  items-center justify-between  md:space-x-3 flex-shrink-0">
-            <h1 class="text-2xl font-semibold">{{ $title }}</h1>
+    <div class="flex  justify-between  mb-5">
+        <h1 class="text-2xl font-semibold">{{ $title }}</h1>
+        <div class="w-fit">
             <a href="{{ route('criteria.create') }}"
                 class="flex items-center justify-center text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
                 <svg class="h-3.5 w-3.5 mr-2" fill="currentColor" viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"
@@ -60,9 +59,9 @@
         </div>
     @endif
     <section class="bg-white dark:bg-zinc-800 p-4 rounded-md border border-zinc-200 dark:border-zinc-800">
-        <div class="relative sm:rounded-lg">
-            <div class="">
-                <table class="w-full text-sm text-left text-zinc-500 dark:text-zinc-400" id="pagination-table">
+        <div class="sm:rounded-lg">
+            <div class="max-w-screen overflow-hidden">
+                <table class="max-w-full text-sm text-left text-zinc-500 dark:text-zinc-400" id="pagination-table">
                     <thead class="text-xs text-zinc-700 uppercase bg-zinc-50 dark:bg-zinc-900 dark:text-zinc-400">
                         <tr>
                             <th scope="col" class="px-4 py-3">
@@ -111,7 +110,7 @@
                             $no = 1;
                         @endphp
                         @forelse ($criterias as $criteria)
-                            <tr class="border-b border-zinc-200 dark:border-zinc-700">
+                            <tr class="border-b border-zinc-200 dark:border-zinc-700"  x-data="{ showHapus: false }">
                                 <th scope="row"
                                     class="px-4 py-3 font-medium text-zinc-900 whitespace-nowrap dark:text-white">
                                     {{ $no }}</th>
@@ -138,11 +137,45 @@
                                                     class="block py-2 px-4 hover:bg-zinc-100 dark:hover:bg-zinc-600 dark:hover:text-white">Edit</a>
                                             </li>
                                             <li>
-                                                <a href="#"
-                                                    class="block py-2 px-4 hover:bg-zinc-100 dark:hover:bg-zinc-600 dark:hover:text-white">Hapus</a>
+                                                <button type="button" x-on:click="showHapus=!showHapus"
+                                                    class="block w-full text-start py-2 px-4 hover:bg-zinc-100 dark:hover:bg-zinc-600 dark:hover:text-white">Hapus</button>
                                             </li>
                                         </ul>
                                     </div>
+
+                                    <section tabindex="-1"
+                                        class="items-center justify-center overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 w-full md:inset-0 h-dvh md:h-full hidden"
+                                        :class="{ 'hidden': !showHapus, 'flex bg-black/60 ': showHapus }">
+                                        <div class="relative p-4 w-full max-w-lg h-auto md:h-auto">
+                                            <div class="relative p-4 bg-white rounded-lg dark:bg-zinc-800 md:p-8">
+                                                <div class="mb-4 text-sm font-light text-zinc-500 dark:text-zinc-400">
+                                                    <h3 class="mb-3 text-2xl font-bold text-zinc-900 dark:text-white">
+                                                        Yakin Ingin Menghapus Data?<br>({{ $criteria->nama }})</h3>
+                                                    <p>
+                                                        Data yang telah dihapus tidak akan bisa dikembalikan
+                                                        kembali, sehingga pastikan Anda benar-benar yakin
+                                                        sebelum melakukan penghapusan.
+                                                    </p>
+                                                </div>
+                                                <div
+                                                    class="justify-between items-center pt-0 space-y-4 sm:flex sm:space-y-0">
+                                                    <div
+                                                        class="items-center mt-3 flex flex-col sm:flex-row w-full justify-end gap-2">
+                                                        <button id="close-modal" type="button"
+                                                            class="py-2 px-4 w-full text-sm font-medium text-zinc-500 bg-white rounded-lg border border-zinc-200 sm:w-auto hover:bg-zinc-100 focus:ring-4 focus:outline-none focus:ring-primary-300 hover:text-zinc-900 focus:z-10 dark:bg-zinc-700 dark:text-zinc-300 dark:border-zinc-500 dark:hover:text-white dark:hover:bg-zinc-600 dark:focus:ring-zinc-600 order-2 sm:order-1"
+                                                            x-on:click="showHapus=!showHapus">Batal</button>
+                                                        <form action="{{ route('criteria.destroy', $criteria->id) }}"
+                                                            method="POST" class="order-1 sm:order-2 w-full">
+                                                            @csrf
+                                                            @method('DELETE')
+                                                            <button type="submit"
+                                                                class="py-2 px-4 w-full text-sm font-medium rounded-lg border  sm:w-auto focus:ring-4 focus:outline-none focus:ring-primary-300 focus:z-10 bg-red-600 text-white border-red-500 hover:text-white hover:bg-red-500 focus:ring-red-600">Hapus</button>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </section>
                                 </td>
                             </tr>
                             @php

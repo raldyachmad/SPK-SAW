@@ -11,4 +11,15 @@ class Santri extends Model
     use HasFactory;
 
     protected $fillable = ['nama', 'jenis_kelamin'];
+
+    public function penilaians()
+    {
+        return $this->hasMany(Penilaian::class);
+    }
+    protected static function booted()
+    {
+        static::deleting(function ($santri) {
+            $santri->penilaians()->delete();
+        });
+    }
 }

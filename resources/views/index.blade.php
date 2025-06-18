@@ -31,8 +31,8 @@
             </div>
             <div class="p-4 bg-white dark:bg-zinc-800 rounded-xl shadow flex gap-4 items-center">
                 <div class="bg-emerald-600/20 rounded-lg p-3">
-                    <svg class=" w-8 h-8 text-emerald-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                        fill="none" viewBox="0 0 24 24">
+                    <svg class=" w-8 h-8 text-emerald-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                        width="24" height="24" fill="none" viewBox="0 0 24 24">
                         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                             d="M9.143 4H4.857A.857.857 0 0 0 4 4.857v4.286c0 .473.384.857.857.857h4.286A.857.857 0 0 0 10 9.143V4.857A.857.857 0 0 0 9.143 4Zm10 0h-4.286a.857.857 0 0 0-.857.857v4.286c0 .473.384.857.857.857h4.286A.857.857 0 0 0 20 9.143V4.857A.857.857 0 0 0 19.143 4Zm-10 10H4.857a.857.857 0 0 0-.857.857v4.286c0 .473.384.857.857.857h4.286a.857.857 0 0 0 .857-.857v-4.286A.857.857 0 0 0 9.143 14Zm10 0h-4.286a.857.857 0 0 0-.857.857v4.286c0 .473.384.857.857.857h4.286a.857.857 0 0 0 .857-.857v-4.286a.857.857 0 0 0-.857-.857Z" />
                     </svg>
@@ -44,8 +44,8 @@
             </div>
             <div class="p-4 bg-white dark:bg-zinc-800 rounded-xl shadow flex gap-4 items-center">
                 <div class="bg-cyan-600/20 rounded-lg p-3">
-                    <svg class=" w-8 h-8 text-cyan-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                        fill="none" viewBox="0 0 24 24">
+                    <svg class=" w-8 h-8 text-cyan-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                        width="24" height="24" fill="none" viewBox="0 0 24 24">
                         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                             d="M9.143 4H4.857A.857.857 0 0 0 4 4.857v4.286c0 .473.384.857.857.857h4.286A.857.857 0 0 0 10 9.143V4.857A.857.857 0 0 0 9.143 4Zm10 0h-4.286a.857.857 0 0 0-.857.857v4.286c0 .473.384.857.857.857h4.286A.857.857 0 0 0 20 9.143V4.857A.857.857 0 0 0 19.143 4Zm-10 10H4.857a.857.857 0 0 0-.857.857v4.286c0 .473.384.857.857.857h4.286a.857.857 0 0 0 .857-.857v-4.286A.857.857 0 0 0 9.143 14Zm10 0h-4.286a.857.857 0 0 0-.857.857v4.286c0 .473.384.857.857.857h4.286a.857.857 0 0 0 .857-.857v-4.286a.857.857 0 0 0-.857-.857Z" />
                     </svg>
@@ -58,14 +58,14 @@
         </div>
 
         <!-- Charts Section -->
-        <div class="flex gap-6 mb-6">
+        <div class="flex flex-col sm:flex-row gap-6 mb-6 ">
             <div class="bg-white dark:bg-zinc-800 p-4 rounded-xl shadow">
                 <h4 class="text-lg font-semibold text-zinc-800 dark:text-white mb-4">Distribusi Santri</h4>
-                <canvas id="santriChart"></canvas>
+                <canvas id="santriChart" class="max-h-72"></canvas>
             </div>
-            <div class="bg-white dark:bg-zinc-800 p-4 h-auto w-full rounded-xl shadow">
+            <div class="bg-white dark:bg-zinc-800 p-4 h-full w-full rounded-xl shadow">
                 <h4 class="text-lg font-semibold text-zinc-800 dark:text-white mb-4">Bobot Kategori</h4>
-                <canvas id="kategoriChart"></canvas>
+                <canvas id="kategoriChart" class="max-h-72"></canvas>
             </div>
         </div>
     </section>
@@ -84,6 +84,7 @@
                         {{ $santris->where('jenis_kelamin', 'Laki-laki')->count() }},
                     ],
                     backgroundColor: ['oklch(48.8% 0.243 264.376)', 'oklch(43.2% 0.232 292.759)'],
+                    borderWidth: 0
                 }]
             }
         });
@@ -93,7 +94,7 @@
             data: {
                 labels: {!! json_encode($criterias->pluck('nama')) !!},
                 datasets: [{
-                    label: 'Bobot',
+                    label: 'Bobot Kriteria',
                     data: {!! json_encode($criterias->pluck('bobot')) !!},
                     backgroundColor: 'oklch(68.5% 0.169 237.323)'
                 }]

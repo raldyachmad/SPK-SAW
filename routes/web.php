@@ -27,7 +27,9 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-    Route::resource('penilaian', PenilaianController::class);
+    Route::resource('penilaian', PenilaianController::class)->parameters([
+        'penilaian' => 'santri',
+    ]);
     Route::resource('santri', SantriController::class);
     Route::resource('criteria', CriteriaController::class);
 });

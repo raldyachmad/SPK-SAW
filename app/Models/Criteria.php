@@ -11,4 +11,8 @@ class Criteria extends Model
     use HasFactory;
 
     protected $fillable = ['nama', 'bobot', 'atribut'];
+    public function penilaians()
+{
+    return $this->hasMany(Penilaian::class, 'criteria_id');
+}
 }

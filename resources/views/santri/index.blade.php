@@ -40,9 +40,45 @@
                 <table class="w-full text-sm text-left text-zinc-500 dark:text-zinc-400" id="pagination-table">
                     <thead class="text-xs text-zinc-700 uppercase bg-zinc-50 dark:bg-zinc-700 dark:text-zinc-400">
                         <tr>
-                            <th scope="col" class="px-4 py-3">No</th>
-                            <th scope="col" class="px-4 py-3">Nama Lengkap</th>
-                            <th scope="col" class="px-4 py-3">Jenis Kelamin</th>
+                            <th scope="col" class="px-4 py-3">
+                                <span class="flex items-center">
+                                    No <svg class="w-4 h-4 ms-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                                        width="24" height="24" fill="none" viewBox="0 0 24 24">
+                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                            stroke-width="2" d="m8 15 4 4 4-4m0-6-4-4-4 4" />
+                                    </svg>
+                                </span>
+                            </th>
+                            <th scope="col" class="px-4 py-3">
+                                <span class="flex items-center">
+                                    Nama Lengkap <svg class="w-4 h-4 ms-1"
+                                    aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                    fill="none" viewBox="0 0 24 24">
+                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                        stroke-width="2" d="m8 15 4 4 4-4m0-6-4-4-4 4" />
+                                </svg>
+                                </span>
+                            </th>
+                            <th scope="col" class="px-4 py-3">
+                                <span class="flex items-center">
+                                    Jenis Kelamin <svg class="w-4 h-4 ms-1"
+                                    aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                    fill="none" viewBox="0 0 24 24">
+                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                        stroke-width="2" d="m8 15 4 4 4-4m0-6-4-4-4 4" />
+                                </svg>
+                                </span>
+                            </th>
+                            <th scope="col" class="px-4 py-3">
+                                <span class="flex items-center">
+                                    Tanggal Diperbarui <svg class="w-4 h-4 ms-1"
+                                    aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                    fill="none" viewBox="0 0 24 24">
+                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                        stroke-width="2" d="m8 15 4 4 4-4m0-6-4-4-4 4" />
+                                </svg>
+                                </span>
+                            </th>
                             <th scope="col" class="px-4 py-3">
                                 <span class="sr-only">Actions</span>
                             </th>
@@ -59,6 +95,7 @@
                                     {{ $no }}</th>
                                 <td class="px-4 py-3">{{ $santri->nama }}</td>
                                 <td class="px-4 py-3">{{ $santri->jenis_kelamin }}</td>
+                                <td class="px-4 py-3">{{ $santri->updated_at->diffForHumans() }}</td>
                                 <td class="px-4 py-3 flex items-center justify-end">
                                     <button id="santri-{{ $santri->id }}-button"
                                         data-dropdown-toggle="santri-{{ $santri->id }}"
@@ -86,7 +123,7 @@
                                     </div>
                                     <section tabindex="-1"
                                         class="items-center justify-center overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 w-full md:inset-0 h-dvh md:h-full hidden"
-                                        :class="{ 'hidden': !showHapus, 'flex bg-zinc-900/20 dark:bg-zinc-700/40 ': showHapus }">
+                                        :class="{ 'hidden': !showHapus, 'flex bg-black/60 ': showHapus }">
                                         <div class="relative p-4 w-full max-w-lg h-auto md:h-auto">
                                             <div class="relative p-4 bg-white rounded-lg dark:bg-zinc-800 md:p-8">
                                                 <div class="mb-4 text-sm font-light text-zinc-500 dark:text-zinc-400">
@@ -119,8 +156,6 @@
                                     </section>
                                 </td>
                             </tr>
-
-
                             @php
                                 $no++;
                             @endphp
@@ -131,68 +166,6 @@
                         @endforelse
                     </tbody>
                 </table>
-                {{-- <table class="w-full text-sm text-left text-zinc-500 dark:text-zinc-400" id="pagination-table">
-                    <thead class="text-xs text-zinc-700 uppercase bg-zinc-50 dark:bg-zinc-900 dark:text-zinc-400">
-                        <tr>
-                            <th scope="col" class="px-4 py-3">No</th>
-                            <th scope="col" class="px-4 py-3">Nama Kriteria</th>
-                            <th scope="col" class="px-4 py-3">Bobot</th>
-                            <th scope="col" class="px-4 py-3">Atribut</th>
-                            <th scope="col" class="px-4 py-3">
-                                <span class="sr-only">Actions</span>
-                            </th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @php
-                            $no = 1;
-                        @endphp
-                        @forelse ($criterias as $criteria)
-                            <tr
-                                class="border-b bord                                                                                                                                                                                                                                                                                                                                                                                                            er-zinc-200 dark:border-zinc-700">
-                                <th scope="row"
-                                    class="px-4 py-3 font-medium text-zinc-900 whitespace-nowrap dark:text-white">
-                                    {{ $no }}</th>
-                                <td class="px-4 py-3">{{ $criteria->nama }}</td>
-                                <td class="px-4 py-3">{{ $criteria->bobot }}</td>
-                                <td class="px-4 py-3 capitalize">{{ $criteria->atribut }}</td>
-                                <td class="px-4 py-3 flex items-center justify-end">
-                                    <button id="criteria-{{ $no }}-button"
-                                        data-dropdown-toggle="criteria-{{ $no }}"
-                                        class="inline-flex items-center p-0.5 text-sm font-medium text-center text-zinc-500 hover:text-zinc-800 rounded-lg focus:outline-none dark:text-zinc-400 dark:hover:text-zinc-100"
-                                        type="button">
-                                        <svg class="w-5 h-5" aria-hidden="true" fill="currentColor" viewbox="0 0 20 20"
-                                            xmlns="http://www.w3.org/2000/svg">
-                                            <path
-                                                d="M6 10a2 2 0 11-4 0 2 2 0 014 0zM12 10a2 2 0 11-4 0 2 2 0 014 0zM16 12a2 2 0 100-4 2 2 0 000 4z" />
-                                        </svg>
-                                    </button>
-                                    <div id="criteria-{{ $no }}"
-                                        class="hidden z-10 w-44 bg-white rounded divide-y divide-zinc-100 shadow dark:bg-zinc-700 dark:divide-zinc-600">
-                                        <ul class="py-1 text-sm text-zinc-700 dark:text-zinc-200"
-                                            aria-labelledby="criteria-{{ $no }}-button">
-                                            <li>
-                                                <a href="#"
-                                                    class="block py-2 px-4 hover:bg-zinc-100 dark:hover:bg-zinc-600 dark:hover:text-white">Edit</a>
-                                            </li>
-                                            <li>
-                                                <a href="#"
-                                                    class="block py-2 px-4 hover:bg-zinc-100 dark:hover:bg-zinc-600 dark:hover:text-white">Hapus</a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </td>
-                            </tr>
-                            @php
-                                $no++;
-                            @endphp
-                        @empty
-                            <tr class=" border-zinc-200 dark:border-zinc-700">
-                                <td colspan="4" class="px-4 py-3 text-center">Data Kosong!</td>
-                            </tr>
-                        @endforelse
-                    </tbody>
-                </table> --}}
             </div>
         </div>
     </section>
@@ -204,7 +177,7 @@
                     paging: true,
                     perPage: 5,
                     perPageSelect: [5, 10, 15, 20, 25],
-                    sortable: false
+                    sortable: true
                 });
             }
         </script>
