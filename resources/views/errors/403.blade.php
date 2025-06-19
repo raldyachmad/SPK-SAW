@@ -1,1 +1,1 @@
-<x-error-page code="403" title="Akses Ditolak" message="Anda tidak memiliki izin untuk mengakses halaman ini." />
+<x-error-layout code="403" title="Akses Ditolak" message="Anda tidak memiliki izin untuk mengakses halaman ini." />

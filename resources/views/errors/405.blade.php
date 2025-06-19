@@ -1,1 +1,1 @@
-<x-error-page code="405" title="Metode Tidak Diizinkan" message="Metode request yang digunakan tidak diizinkan untuk halaman ini." />
+<x-error-layout code="405" title="Metode Tidak Diizinkan" message="Metode request yang digunakan tidak diizinkan untuk halaman ini." />

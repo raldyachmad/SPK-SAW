@@ -1,1 +1,1 @@
-<x-error-page code="419" title="Halaman Kadaluarsa" message="Sesi Anda telah kadaluarsa. Silakan refresh halaman." />
+<x-error-layout code="419" title="Halaman Kadaluarsa" message="Sesi Anda telah kadaluarsa. Silakan refresh halaman." />
