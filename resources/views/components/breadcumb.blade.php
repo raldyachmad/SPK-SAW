@@ -9,12 +9,17 @@
         </svg>
         Dashboard
     </a>
-    @if (!request()->is('dashboard') || !request()->is('superadmin/dashboard'))
+    @if (!request()->is('dashboard') && !request()->is('*dashboard'))
         <svg class="w-4 h-4 mx-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
             fill="none" viewBox="0 0 24 24">
             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                 d="m9 5 7 7-7 7" />
         </svg>
+        @if (request()->is('*user*'))
+            <a href="{{ route('user.index') }}" class="flex items-center gap-1 hover:underline">
+                Pengguna
+            </a>
+        @endif
         @if (request()->is('santri*'))
             <a href="{{ route('santri.index') }}" class="flex items-center gap-1 hover:underline">
                 Santri
@@ -29,8 +34,8 @@
             </a>
         @endif
         @if (request()->is('*edit') || request()->is('*create'))
-            <svg class="w-4 h-4 mx-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                fill="none" viewBox="0 0 24 24">
+            <svg class="w-4 h-4 mx-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24"
+                height="24" fill="none" viewBox="0 0 24 24">
                 <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                     d="m9 5 7 7-7 7" />
             </svg>

@@ -4,7 +4,7 @@
         <div class="flex justify-start items-center">
             <button data-drawer-target="drawer-navigation" data-drawer-toggle="drawer-navigation"
                 aria-controls="drawer-navigation"
-                class="p-2 mr-2 text-gray-600 rounded-lg cursor-pointer md:hidden hover:text-gray-900 hover:bg-zinc-100 focus:bg-zinc-100 dark:focus:bg-zinc-700 focus:ring-2 focus:ring-gray-100 dark:focus:ring-gray-700 dark:text-gray-400 dark:hover:bg-zinc-700 dark:hover:text-white">
+                class="p-2 mr-2 text-zinc-600 rounded-lg cursor-pointer md:hidden hover:text-zinc-900 hover:bg-zinc-100 focus:bg-zinc-100 dark:focus:bg-zinc-700 focus:ring-2 focus:ring-zinc-100 dark:focus:ring-zinc-700 dark:text-zinc-400 dark:hover:bg-zinc-700 dark:hover:text-white">
                 <svg aria-hidden="true" class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20"
                     xmlns="http://www.w3.org/2000/svg">
                     <path fill-rule="evenodd"
@@ -28,7 +28,7 @@
         </div>
         <div class="flex items-center gap-1 lg:order-2">
             <button @click="toggleTheme"
-                class="p-2 text-gray-500 rounded-lg hover:text-gray-900 hover:bg-zinc-100 dark:text-gray-400 dark:hover:text-white dark:hover:bg-zinc-700 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600 ">
+                class="p-2 text-zinc-500 rounded-lg hover:text-zinc-900 hover:bg-zinc-100 dark:text-zinc-400 dark:hover:text-white dark:hover:bg-zinc-700 focus:ring-4 focus:ring-zinc-300 dark:focus:ring-zinc-600 ">
                 <svg x-show="isDark" class="w-5 h-5 " aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
                     width="24" height="24" fill="none" viewBox="0 0 24 24">
                     <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -42,7 +42,7 @@
 
             </button>
             <button type="button"
-                class="flex mx-3 text-sm bg-zinc-800 rounded-full md:mr-0 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600"
+                class="flex mx-3 text-sm bg-zinc-800 rounded-full md:mr-0 focus:ring-4 focus:ring-zinc-300 dark:focus:ring-zinc-600"
                 id="user-menu-button" aria-expanded="false" data-dropdown-toggle="dropdown">
                 <span class="sr-only">Open user menu</span>
                 <img class="w-8 h-8 rounded-full"
@@ -50,16 +50,16 @@
                     alt="{{ Auth::user()->name }}" />
             </button>
             <!-- Dropdown menu -->
-            <div class="hidden z-50 my-4 w-56 text-base list-none bg-white divide-y divide-gray-100 shadow dark:bg-zinc-700 dark:divide-gray-600 rounded-md overflow-hidden"
+            <div class="hidden z-50 my-4 w-56 text-base list-none bg-white divide-y divide-zinc-100 shadow dark:bg-zinc-700 dark:divide-zinc-600 rounded-md overflow-hidden"
                 id="dropdown">
                 <div class="py-3 px-4">
                     <span
-                        class="block text-sm font-semibold text-gray-900 dark:text-white">{{ Auth::user()->name }}</span>
-                    <span class="block text-sm text-gray-900 truncate dark:text-white">{{ Auth::user()->email }}</span>
+                        class="block text-sm font-semibold text-zinc-900 dark:text-white">{{ Auth::user()->name }}</span>
+                    <span class="block text-sm text-zinc-900 truncate dark:text-white">{{ Auth::user()->email }}</span>
                 </div>
-                <ul class="py-1 text-gray-700 dark:text-gray-300" aria-labelledby="dropdown">
+                <ul class="py-1 text-zinc-700 dark:text-zinc-300" aria-labelledby="dropdown">
                     <li>
-                        <a href="{{ route('profile.edit') }}"
+                        <a href="{{ url(Auth::user()->role == 'admin' ? 'profile':'superadmin/profile') }}"
                             class="block py-2 px-4 text-sm hover:bg-zinc-100 dark:hover:bg-zinc-600 dark:hover:text-white">
                             Profil Saya
                         </a>

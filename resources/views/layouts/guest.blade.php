@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>{{ $title ?? '' }} | {{ config('app.name', 'Laravel') }}</title>
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
@@ -48,9 +48,9 @@
         </svg>
 
     </button>
-    <div class="min-h-screen flex flex-col justify-center items-center px-3 pt-6 sm:pt-0 bg-zinc-100 dark:bg-zinc-900">
+    <div class="min-h-dvh flex flex-col justify-center items-center px-3 pt-6 sm:pt-0 bg-zinc-100 dark:bg-zinc-900">
         <div
-            class="w-full sm:max-w-md px-4 sm:px-6 py-4 bg-white dark:bg-zinc-800 shadow-md overflow-hidden sm:rounded-lg -mt-20 md:mt-0">
+            class="w-full sm:max-w-md px-4 sm:px-6 py-4 overflow-hidden sm:rounded-lg -mt-20 md:mt-0">
             <a href="/" class="flex items-center justify-center gap-3 my-6">
                 <x-application-logo class="size-18 rounded-sm" />
                 <span class=" text-3xl whitespace-nowrap dark:text-white">

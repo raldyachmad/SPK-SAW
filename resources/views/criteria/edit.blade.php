@@ -8,7 +8,7 @@
             @method('PUT')
             <div class="grid md:grid-cols-2 md:gap-4">
                 <div>
-                    <label for="nama" class="block mb-2 text-sm font-medium text-zinc-900 dark:text-white">
+                    <label for="nama" class="block mb-2 text-sm font-medium text-zinc-900 dark:text-white after:ml-0.5 after:text-red-500 after:content-['*']">
                         Nama Kriteria</label>
                     <input type="text" id="nama"
                         class="bg-zinc-50 border border-zinc-300 text-zinc-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-zinc-700 dark:border-zinc-600 dark:placeholder-zinc-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
@@ -18,7 +18,7 @@
                     @enderror
                 </div>
                 <div x-data="{ bobot: {{ $criteria->bobot }} }">
-                    <label for="bobot" class="block mb-2 text-sm font-medium text-zinc-900 dark:text-white">
+                    <label for="bobot" class="block mb-2 text-sm font-medium text-zinc-900 dark:text-white after:ml-0.5 after:text-red-500 after:content-['*']">
                         Bobot Kriteria</label>
                     <input type="range" x-model.number="bobot" min="0" max="1" step="0.05"
                         value="{{ $criteria->bobot }}"
@@ -32,7 +32,7 @@
                     @enderror
                 </div>
                 <div>
-                    <label for="atribut" class="block mb-2 text-sm font-medium text-zinc-900 dark:text-white">Atribut
+                    <label for="atribut" class="block mb-2 text-sm font-medium text-zinc-900 dark:text-white after:ml-0.5 after:text-red-500 after:content-['*']">Atribut
                         Kategori</label>
                     <select id="atribut" name="atribut"
                         class="bg-zinc-50 border border-zinc-300 text-zinc-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-zinc-700 dark:border-zinc-600 dark:placeholder-zinc-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"

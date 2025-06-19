@@ -17,7 +17,7 @@
                     @endphp
                     <div class="mb-4" x-data="{ nilai: {{ $nilai }} }">
                         <label for="nilai_{{ $criteria->id }}"
-                            class="block mb-2 text-sm font-medium text-zinc-900 dark:text-white capitalize">
+                            class="block mb-2 text-sm font-medium text-zinc-900 dark:text-white capitalize after:ml-0.5 after:text-red-500 after:content-['*']">
                             {{ $criteria->nama }} ({{ $criteria->atribut }})
                         </label>
                         <input type="range" x-model.number="nilai" min="0" max="1" step="0.05"

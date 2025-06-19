@@ -6,6 +6,7 @@ use App\Http\Controllers\PenilaianController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SantriController;
 use App\Http\Controllers\SuperDashboardController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -18,12 +19,10 @@ Route::get('/dashboard', [DashboardController::class, 'index'])->middleware(['au
 Route::get('/superadmin/dashboard', [SuperDashboardController::class, 'index'])->middleware(['auth', 'role:superadmin'])->name('superadmin.dashboard');
 
 
-
-
 Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::get('profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     Route::resource('penilaian', PenilaianController::class)->parameters([
         'penilaian' => 'santri',
     ]);
@@ -31,4 +30,10 @@ Route::middleware('auth')->group(function () {
     Route::resource('criteria', CriteriaController::class);
 });
 
+Route::middleware(['auth', 'role:superadmin'])->group(function () {
+    Route::get('superadmin/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('superadmin/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('superadmin/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::resource('superadmin/user', UserController::class);
+});
 require __DIR__ . '/auth.php';

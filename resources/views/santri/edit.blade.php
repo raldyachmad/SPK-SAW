@@ -8,14 +8,14 @@
             @method('PUT')
             <div class="grid md:grid-cols-2 md:gap-4">
                 <div>
-                    <label for="nama" class="block mb-2 text-sm font-medium text-zinc-900 dark:text-white">
+                    <label for="nama" class="block mb-2 text-sm font-medium text-zinc-900 dark:text-white after:ml-0.5 after:text-red-500 after:content-['*']">
                         Nama Lengkap</label>
                     <input type="text" id="default-input"
                         class="bg-zinc-50 border border-zinc-300 text-zinc-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-zinc-700 dark:border-zinc-600 dark:placeholder-zinc-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                         name="nama" value="{{ $santri->nama }}">
                 </div>
                 <div>
-                    <label for="jenis_kelamin" class="block mb-2 text-sm font-medium text-zinc-900 dark:text-white">
+                    <label for="jenis_kelamin" class="block mb-2 text-sm font-medium text-zinc-900 dark:text-white after:ml-0.5 after:text-red-500 after:content-['*']">
                         Jenis Kelamin</label>
                     <select id="jenis_kelamin" name="jenis_kelamin"
                         class="bg-zinc-50 border border-zinc-300 text-zinc-900 mb-6 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-zinc-700 dark:border-zinc-600 dark:placeholder-zinc-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>

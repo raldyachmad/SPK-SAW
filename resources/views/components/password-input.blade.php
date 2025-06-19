@@ -8,7 +8,7 @@
         {{ $required ? 'required' : '' }}
         autocomplete="{{ $autocomplete }}"
         {{ $attributes->merge([
-            'class' => 'block w-full pr-10 border-zinc-300 dark:border-zinc-700 dark:bg-zinc-900 dark:text-zinc-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm'
+            'class' => 'bg-zinc-50 border border-zinc-300 text-zinc-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-zinc-700 dark:border-zinc-600 dark:placeholder-zinc-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500'
         ]) }}
     >
     <button

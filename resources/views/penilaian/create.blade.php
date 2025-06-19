@@ -9,7 +9,7 @@
             @csrf
             <div class="grid md:grid-cols-3 md:gap-4">
                 <div class="mb-4">
-                    <label for="santri_id" class="block mb-2 text-sm font-medium text-zinc-900 dark:text-white">Pilih
+                    <label for="santri_id" class="block mb-2 text-sm font-medium text-zinc-900 dark:text-white after:ml-0.5 after:text-red-500 after:content-['*']">Pilih
                         Santri</label>
                     <select name="santri_id" id="santri_id" required
                         class="bg-zinc-50 border border-zinc-300 text-zinc-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-zinc-700 dark:border-zinc-600 dark:placeholder-zinc-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
@@ -22,7 +22,7 @@
                 @foreach ($criterias as $criteria)
                     <div class="mb-4" x-data="{ nilai: 0 }">
                         <label for="nilai_{{ $criteria->id }}"
-                            class="block mb-2 text-sm font-medium text-zinc-900 dark:text-white capitalize">
+                            class="block mb-2 text-sm font-medium text-zinc-900 dark:text-white capitalize after:ml-0.5 after:text-red-500 after:content-['*']">
                             {{ $criteria->nama }} ({{ $criteria->atribut }})
                         </label>
                         <input type="range" x-model.number="nilai" min="0" max="1" step="0.05"
