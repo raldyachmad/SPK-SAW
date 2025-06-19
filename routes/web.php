@@ -36,4 +36,8 @@ Route::middleware(['auth', 'role:superadmin'])->group(function () {
     Route::delete('superadmin/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     Route::resource('superadmin/user', UserController::class);
 });
+
+
+
+
 require __DIR__ . '/auth.php';
