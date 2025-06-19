@@ -154,7 +154,7 @@
                             @endphp
                         @empty
                             <tr class=" border-zinc-200 dark:border-zinc-700">
-                                <td colspan="3" class="px-4 py-3 text-center">Data Kosong!</td>
+                                <td colspan="5" class="px-4 py-3 text-center">Data Kosong!</td>
                             </tr>
                         @endforelse
                     </tbody>
