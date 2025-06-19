@@ -44,7 +44,7 @@
         <x-header></x-header>
 
         <x-sidebar></x-sidebar>
-        <main class="p-4 md:px-5 md:ml-64 min-h-screen max-w-screen pt-20 overflow-hidden overflow-y-auto">
+        <main class="p-4 md:px-5 md:ml-64 min-h-screen max-w-screen pt-18 overflow-hidden overflow-y-auto">
             {{ $slot }}
         </main>
     </div>

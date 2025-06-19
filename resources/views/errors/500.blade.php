@@ -1,0 +1,1 @@
+<x-error-page code="500" title="Kesalahan Server" message="Terjadi kesalahan di server kami. Cobalah beberapa saat lagi." />

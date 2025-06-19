@@ -21,21 +21,20 @@ Route::get('/login', function () {
             default => abort(403),
         };
     }
-
     return app(AuthenticatedSessionController::class)->create();
 })->middleware('web')->name('login');
 
-Route::get('/register', function () {
-    if (Auth::check()) {
-        return match (Auth::user()->role) {
-            'superadmin' => redirect()->route('superadmin.dashboard'),
-            'admin' => redirect()->route('dashboard'),
-            default => abort(403),
-        };
-    }
+// Route::get('/register', function () {
+//     if (Auth::check()) {
+//         return match (Auth::user()->role) {
+//             'superadmin' => redirect()->route('superadmin.dashboard'),
+//             'admin' => redirect()->route('dashboard'),
+//             default => abort(403),
+//         };
+//     }
 
-    return app(RegisteredUserController::class)->create();
-})->middleware('web')->name('register');
+//     return app(RegisteredUserController::class)->create();
+// })->middleware('web')->name('register');
 
 Route::middleware('guest')->group(function () {
     Route::post('register', [RegisteredUserController::class, 'store']);
