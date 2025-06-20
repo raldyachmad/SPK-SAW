@@ -16,7 +16,6 @@ class SantriController extends Controller
     public function index()
     {
         $santris = Santri::latest()->get();
-        // $criterias = Criteria::latest()->get();
         return view('santri.index', ['title' => 'Daftar Santri', 'santris' => $santris]);
     }
 
