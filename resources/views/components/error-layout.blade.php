@@ -39,14 +39,14 @@
 </head>
 
 <body>
-    <section class="bg-white dark:bg-gray-900 h-dvh flex items-center">
+    <section class="bg-white dark:bg-zinc-900 h-dvh flex items-center">
         <div class="py-8 px-4 mx-auto max-w-screen-xl lg:py-16 lg:px-6">
             <div class="mx-auto max-w-screen-sm text-center">
                 <h1 class="font-bold text-blue-500 text-9xl mb-5">{{ $code }}</h1>
-                <p class="mb-4 text-3xl tracking-tight font-bold text-gray-900 dark:text-white">
+                <p class="mb-4 text-3xl tracking-tight font-bold text-zinc-900 dark:text-white">
                     Oops, {{ $title }}
                 </p>
-                <p class="mb-4 font-light text-gray-500 dark:text-gray-400">
+                <p class="mb-4 font-light text-zinc-500 dark:text-zinc-400">
                     {{ $message }}
                 </p>
                 <button onclick="window.history.back()"

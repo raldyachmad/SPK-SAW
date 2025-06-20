@@ -15,7 +15,7 @@
     </div>
     <section class="bg-white dark:bg-zinc-800 p-4 rounded-md border border-zinc-200 dark:border-zinc-700">
         @if (isset($success))
-            $success
+            {{ $success }}
         @endif
         <div class="bg-white dark:bg-zinc-800 relative sm:rounded-lg">
             <div>

@@ -1,12 +1,11 @@
 <x-layout>
     <x-slot:title>{{ $title }}</x-slot:title>
     <x-breadcumb :title="$title"></x-breadcumb>
-    <div class="flex items-center justify-between mb-4">
+    <div class="flex sm:items-center flex-col sm:flex-row justify-between gap-3 mb-4">
         <h1 class="text-2xl font-semibold">{{ $title }}</h1>
         <div class="flex items-center gap-2 ">
-
-            <button id="exportButton" data-dropdown-toggle="export" data-dropdown-trigger="hover"
-                class="flex items-center justify-center font-medium rounded-lg text-sm px-4 py-2 border border-zinc-200 hover:bg-zinc-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-zinc-100 dark:focus:ring-zinc-700 dark:bg-zinc-800 dark:text-zinc-400 dark:border-zinc-600 dark:hover:text-white dark:hover:bg-zinc-700 text-zinc-900 focus:outline-none bg-white "
+            <button id="exportButton" data-dropdown-toggle="export"
+                class="flex items-center justify-center font-medium rounded-lg text-sm px-3 py-2 border border-zinc-200 hover:bg-zinc-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-zinc-100 dark:focus:ring-zinc-700 dark:bg-zinc-800 dark:text-zinc-400 dark:border-zinc-600 dark:hover:text-white dark:hover:bg-zinc-700 text-zinc-900 focus:outline-none bg-white "
                 type="button">
                 <svg class="w-4.5 h-4.5 me-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
                     fill="none" viewBox="0 0 24 24">
@@ -21,26 +20,24 @@
                         d="m1 1 4 4 4-4" />
                 </svg>
             </button>
-
             <!-- Dropdown menu -->
             <div id="export"
                 class="z-10 hidden bg-white divide-y divide-zinc-100 rounded-lg shadow-sm w-44 dark:bg-zinc-700">
                 <ul class="py-2 text-sm text-zinc-700 dark:text-zinc-200" aria-labelledby="exportButton">
                     <li>
-                        <a href="#"
-                            class="block px-4 py-2 hover:bg-zinc-100 dark:hover:bg-zinc-600 dark:hover:text-white">PDF</a>
+                        <a href="{{ route('export.santri.pdf') }}"
+                            class="block px-4 py-2 hover:bg-zinc-100 dark:hover:bg-zinc-600 dark:hover:text-white">Pdf</a>
                     </li>
                     <li>
-                        <a href="#"
-                            class="block px-4 py-2 hover:bg-zinc-100 dark:hover:bg-zinc-600 dark:hover:text-white">XLSX</a>
+                        <a href="{{ route('export.santri.excel') }}"
+                            class="block px-4 py-2 hover:bg-zinc-100 dark:hover:bg-zinc-600 dark:hover:text-white">Excel</a>
                     </li>
                     <li>
-                        <a href="#"
-                            class="block px-4 py-2 hover:bg-zinc-100 dark:hover:bg-zinc-600 dark:hover:text-white">CSV</a>
+                        <a href="{{ route('export.santri.csv') }}"
+                            class="block px-4 py-2 hover:bg-zinc-100 dark:hover:bg-zinc-600 dark:hover:text-white">Csv</a>
                     </li>
                 </ul>
             </div>
-
             <a href="{{ route('santri.create') }}"
                 class="flex items-center justify-center text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
                 <svg class="h-3.5 w-3.5 mr-2" fill="currentColor" viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"

@@ -15,37 +15,39 @@ class PenilaianController extends Controller
     public function index()
     {
         $title = "Daftar Penilaian";
-        // Ambil semua santri beserta penilaiannya dan kriteria
         $santris = Santri::with('penilaians.criteria')->get();
+        $kriteria_list = Criteria::pluck('nama')->toArray();
 
         $hasil = [];
 
         foreach ($santris as $santri) {
             $total = 0;
+            $detail_nilai = array_fill_keys($kriteria_list, 0); // <-- inisialisasi awal 0
 
             foreach ($santri->penilaians as $penilaian) {
+                if (!$penilaian->criteria) continue;
+
                 $nilai = $penilaian->nilai;
                 $bobot = $penilaian->criteria->bobot;
-                $atribut = $penilaian->criteria->atribut;
+                $atribut = strtolower($penilaian->criteria->atribut);
+                $nama_kriteria = $penilaian->criteria->nama;
 
-                // Normalisasi nilai
-                if ($atribut === 'Benefit') {
-                    $normalisasi = $nilai; // nilai sudah dalam 0-1
-                } else {
-                    $normalisasi = 1 - $nilai; // semakin kecil semakin baik
-                }
+                $normalisasi = $atribut === 'benefit' ? $nilai : 1 - $nilai;
+                $terbobot = $normalisasi * $bobot;
+                $total += $terbobot;
 
-                $total += $normalisasi * $bobot;
+                $detail_nilai[$nama_kriteria] = round($terbobot, 4);
             }
 
             $hasil[] = [
                 'id' => $santri->id,
                 'nama' => $santri->nama,
-                'nilai_akhir' => round($total, 4)
+                'nilai_akhir' => round($total, 4),
+                'detail' => $detail_nilai
             ];
         }
 
-        // Urutkan dari yang tertinggi
+        // Urutkan berdasarkan nilai akhir
         usort($hasil, fn($a, $b) => $b['nilai_akhir'] <=> $a['nilai_akhir']);
 
         return view('penilaian.index', compact('hasil', 'title'));
