@@ -20,7 +20,7 @@
                             class="block mb-2 text-sm font-medium text-zinc-900 dark:text-white capitalize after:ml-0.5 after:text-red-500 after:content-['*']">
                             {{ $criteria->nama }} ({{ $criteria->atribut }})
                         </label>
-                        <input type="range" x-model.number="nilai" min="0" max="1" step="0.05"
+                        <input type="range" x-model.number="nilai" min="0" max="100" step="0.5"
                             class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer dark:bg-gray-700" />
                         <small class="mt-1 text-sm text-zinc-700 dark:text-zinc-300">
                             Nilai: <span x-text="nilai.toFixed(2)"></span>

@@ -35,7 +35,7 @@
 
 <body class="font-sans text-zinc-900 antialiased">
     <button @click="toggleTheme"
-        class="p-2 text-gray-500 rounded-l-lg hover:text-gray-900 bg-white shadow-lg shadow-blue-600/40 dark:bg-zinc-700 dark:text-gray-400 dark:hover:text-white dark:hover:bg-zinc-700 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600 fixed top-1/2 right-0">
+        class="p-2 text-gray-500 rounded-bl-lg sm:rounded-l-lg hover:text-gray-900 bg-white shadow-lg shadow-blue-600/40 dark:bg-zinc-700 dark:text-gray-400 dark:hover:text-white dark:hover:bg-zinc-700 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600 fixed sm:top-1/2 right-0 z-50">
         <svg x-show="isDark" class="w-5 h-5 " aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24"
             height="24" fill="none" viewBox="0 0 24 24">
             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -46,7 +46,6 @@
             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                 d="M12 21a9 9 0 0 1-.5-17.986V3c-.354.966-.5 1.911-.5 3a9 9 0 0 0 9 9c.239 0 .254.018.488 0A9.004 9.004 0 0 1 12 21Z" />
         </svg>
-
     </button>
     <div class="min-h-dvh flex flex-col justify-center items-center px-3 pt-6 sm:pt-0 bg-zinc-100 dark:bg-zinc-900">
         <div

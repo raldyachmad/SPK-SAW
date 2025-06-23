@@ -36,6 +36,7 @@ class PenilaianController extends Controller
                 $terbobot = $normalisasi * $bobot;
                 $total += $terbobot;
 
+                $nilai_biasa[$nama_kriteria] = $nilai;
                 $detail_nilai[$nama_kriteria] = round($terbobot, 4);
             }
 
@@ -43,7 +44,8 @@ class PenilaianController extends Controller
                 'id' => $santri->id,
                 'nama' => $santri->nama,
                 'nilai_akhir' => round($total, 4),
-                'detail' => $detail_nilai
+                'detail' => $detail_nilai,
+                'nilai' => $nilai_biasa,
             ];
         }
 
@@ -75,7 +77,7 @@ class PenilaianController extends Controller
         $request->validate([
             'santri_id' => 'required|exists:santris,id',
             'nilai' => 'required|array',
-            'nilai.*' => 'required|numeric|min:0|max:1',
+            'nilai.*' => 'required|numeric|min:0|max:100',
         ]);
 
         foreach ($request->nilai as $criteria_id => $value) {
@@ -120,7 +122,7 @@ class PenilaianController extends Controller
     {
         $request->validate([
             'nilai' => 'required|array',
-            'nilai.*' => 'required|numeric|min:0|max:1',
+            'nilai.*' => 'required|numeric|min:0|max:100',
         ]);
 
         foreach ($request->nilai as $criteria_id => $nilai) {

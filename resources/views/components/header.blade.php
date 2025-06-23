@@ -19,7 +19,7 @@
                 </svg>
                 <span class="sr-only">Toggle sidebar</span>
             </button>
-            <a href="{{ url('dashboard') }}" class="flex gap-3 items-center justify-between mr-4">
+            <a href="{{ route(Auth::user()->role == 'admin' ? 'dashboard' : 'superadmin.dashboard') }}" class="flex gap-3 items-center justify-between mr-4">
                 <img src="{{ asset('logo.svg') }}" alt="Logo SPK Skripsi" class="size-9 rounded-sm">
                 <span class="self-center text-xl whitespace-nowrap dark:text-white"><span
                         class="font-semibold text-transparent bg-clip-text bg-gradient-to-r to-sky-400 from-purple-600">SPK</span>

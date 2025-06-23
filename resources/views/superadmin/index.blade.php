@@ -5,7 +5,7 @@
         <h1 class="text-2xl font-semibold mb-4">{{ $title }}</h1>
 
         <!-- Stats Cards -->
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-6">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 mb-3">
             <!-- Total Pengguna -->
             <a href="{{ route('user.index') }}"
                 class="p-4 bg-white hover:bg-lime-500/90 group dark:bg-zinc-800 rounded-xl shadow flex gap-4 items-center transition">
@@ -76,7 +76,7 @@
                 </div>
             </a>
         </div>
-        <div class="p-4 bg-white dark:bg-zinc-800 rounded-xl shadow flex flex-col justify-between my-6">
+        <div class="p-4 bg-white dark:bg-zinc-800 rounded-xl shadow flex flex-col justify-between my-3">
             <div class="mb-2">
                 <h3 class="text-sm font-medium text-yellow-600 dark:text-yellow-400">Lulusan Terbaik</h3>
                 @if ($totalPenilaian != 0)
@@ -93,7 +93,7 @@
         </div>
 
         <!-- Charts Section -->
-        <div class="flex flex-col sm:flex-row gap-6 mb-6">
+        <div class="flex flex-col sm:flex-row gap-3 mb-3">
             <!-- Distribusi Santri -->
             <div class="bg-white dark:bg-zinc-800 p-4 rounded-xl shadow w-full">
                 <h4 class="text-lg font-semibold text-zinc-800 dark:text-white mb-4">Distribusi Jenis Kelamin</h4>
